@@ -65,9 +65,9 @@ const ALL_APPS = [
   { id: 'email', name: 'Email', icon: Mail, component: Email },
   { 
     id: 'quadrais', 
-    name: 'Quadrais AI', 
+    name: 'Infinity AI Workspace', 
     icon: Cpu, 
-    component: () => <IframeApp url="https://quadrais-ai.vercel.app/" /> 
+    component: () => <IframeApp url="https://infinity-ai-workspace.vercel.app/" /> 
   },
 ];
 

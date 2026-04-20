@@ -11,17 +11,17 @@ export const BootScreen: React.FC<BootScreenProps> = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
 
   const bootMessages = [
-    "INFINITY OS v4.2.0-SECURE",
-    "Copyright (C) 2026 Infinity Security Corp.",
+    "INFINITY OS v4.2.0",
+    "Copyright (C) 2026 Infinity Corp.",
     "Initializing kernel...",
     "Self-test: CPU checking... [OK]",
     "Self-test: Memory checking... [OK]",
     "Hardware Abstraction Layer starting...",
     "Mounting /dev/nvme0n1p2...",
     "Loading encrypted file system...",
-    "Infinity Security protocols engaged.",
-    "Firewall: ACTIVE",
-    "Intrusion Detection System: ACTIVE",
+    "Infinity protocols engaged.",
+    "System Services: ACTIVE",
+    "Global Interface: ACTIVE",
     "Starting Infinity Desktop Environment...",
   ];
 
@@ -61,11 +61,12 @@ export const BootScreen: React.FC<BootScreenProps> = ({ onComplete }) => {
             initial={{ rotate: 0 }}
             animate={{ rotate: 360 }}
             transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            className="w-16 h-16 flex items-center justify-center border-2 border-emerald-400 rounded-xl"
           >
-            <Shield className="w-16 h-16 text-emerald-400" />
+            <span className="text-4xl font-bold text-emerald-400">∞</span>
           </motion.div>
           <div>
-            <h1 className="text-4xl font-bold tracking-tighter text-emerald-400">INFINITY SECURITY</h1>
+            <h1 className="text-4xl font-bold tracking-tighter text-emerald-400">INFINITY OS</h1>
             <p className="text-emerald-600">ADVANCED SYSTEM BIOS v2.1</p>
           </div>
         </div>
@@ -110,8 +111,9 @@ export const BootScreen: React.FC<BootScreenProps> = ({ onComplete }) => {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
+              className="flex items-center justify-center p-8 rounded-full border-4 border-emerald-500 shadow-[0_0_50px_rgba(16,185,129,0.3)]"
             >
-              <Shield className="w-32 h-32 text-emerald-500 animate-pulse" />
+              <span className="text-8xl font-bold text-emerald-500 animate-pulse">∞</span>
             </motion.div>
           </motion.div>
         )}
