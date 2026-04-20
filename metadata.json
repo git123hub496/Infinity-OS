@@ -1,0 +1,8 @@
+{
+  "name": "Infinity OS",
+  "description": "A secure, high-performance web-based operating system designed for Infinity Security, featuring advanced system tools and a polished cybersecurity aesthetic.",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": []
+}
