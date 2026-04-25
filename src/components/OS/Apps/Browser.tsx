@@ -7,16 +7,29 @@ interface BrowserProps {
 }
 
 export const Browser: React.FC<BrowserProps> = ({ accentColor }) => {
-  const [url, setUrl] = useState('https://www.google.com/search?q=Infinity+Security&igu=1');
+  const [url, setUrl] = useState('https://nebula-search.vercel.app/');
   const [input, setInput] = useState(url);
   const theme = THEME_COLORS[accentColor];
 
   const handleNavigate = (e: React.FormEvent) => {
     e.preventDefault();
-    let target = input;
-    if (!target.startsWith('http')) {
-      target = `https://${target}`;
+    let target = input.trim();
+    
+    if (!target) return;
+
+    // Check if it's a URL or a search query
+    const isUrl = target.includes('.') && !target.includes(' ');
+    
+    if (isUrl) {
+      if (!target.startsWith('http')) {
+        target = `https://${target}`;
+      }
+    } else {
+      // It's a search term, use Nebula Search with query parameter
+      // Assuming Nebula Search uses q= parameter like most search engines
+      target = `https://nebula-search.vercel.app/?q=${encodeURIComponent(target)}`;
     }
+    
     setUrl(target);
     setInput(target);
   };
