@@ -343,6 +343,37 @@ export const Settings: React.FC<SettingsProps> = ({ accentColor, updateOSConfig,
                   {isUpdating ? 'Checking...' : 'Check for System Updates'}
                 </button>
              </div>
+
+             <div className="p-8 bg-zinc-900 rounded-3xl border border-white/5 space-y-6 transition-all">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 shrink-0">
+                     <RotateCcw className="w-6 h-6" style={{ color: theme.primary }} />
+                  </div>
+                  <div className="text-left">
+                     <h3 className="text-sm font-bold text-white uppercase tracking-widest">System Recovery</h3>
+                     <p className="text-[10px] text-zinc-500 uppercase tracking-widest mt-0.5">Partition Wipe & Rebuilt</p>
+                  </div>
+                </div>
+
+                <p className="text-xs leading-relaxed text-zinc-400 text-left">
+                  Initiate a wipe to completely format this partition and transition back to raw **Nebula OS**. All local data will be safely decommissioned.
+                </p>
+
+                <a 
+                  href="https://nebulaoslink.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full py-4 font-bold text-xs uppercase tracking-[0.2em] rounded-xl hover:scale-[1.01] active:scale-95 transition-all text-center border font-mono animate-pulse"
+                  style={{ 
+                    backgroundColor: `${theme.primary}10`,
+                    borderColor: theme.primary, 
+                    color: theme.primary,
+                    boxShadow: `0 0 15px ${theme.glow}`
+                  }}
+                >
+                  FACTORY RESET TO NEBULA OS
+                </a>
+             </div>
           </div>
         );
 

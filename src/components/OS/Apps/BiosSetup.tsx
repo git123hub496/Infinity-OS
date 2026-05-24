@@ -9,6 +9,7 @@ interface BiosSetupProps {
 export const BiosSetup: React.FC<BiosSetupProps> = ({ accentColor, updateOSConfig }) => {
   const theme = THEME_COLORS[accentColor];
   const [selectedSetting, setSelectedSetting] = useState(0);
+  const [showResetWarning, setShowResetWarning] = useState(false);
 
   const securitySettings = [
     { name: 'Set Supervisor Password', status: 'NOT SET' },
@@ -24,6 +25,37 @@ export const BiosSetup: React.FC<BiosSetupProps> = ({ accentColor, updateOSConfi
         <div className="text-center bg-white text-[#000084] font-bold py-1 mb-6">
           INFINITY SECURITY FIRMWARE SETUP UTILITY (ver 0.99b)
         </div>
+
+        {showResetWarning && (
+          <div className="absolute inset-0 bg-[#000084]/95 flex items-center justify-center p-6 z-50">
+            <div className="bg-red-600 border-4 border-white text-white p-6 max-w-md shadow-[8px_8px_0_rgba(0,0,0,0.5)] space-y-4 font-mono text-center">
+              <div className="bg-white text-red-600 font-bold py-1 px-4 uppercase text-center text-xs">
+                !!! HARDWARE SECURITY ALERT !!!
+              </div>
+              <p className="text-xs leading-relaxed uppercase">
+                A request has been received to flash BIOS blocks and restore raw partition state to NEBULA OS. 
+                This action is IRREVERSIBLE and will partition 'HDD0: SECURE_DRIVE'.
+              </p>
+              <div className="flex gap-4 justify-center pt-2">
+                <a 
+                  href="https://nebulaoslink.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setShowResetWarning(false)}
+                  className="bg-white text-red-600 border-2 border-white px-4 py-1 font-bold text-xs"
+                >
+                  [ YES - EXECUTE ]
+                </a>
+                <button 
+                  onClick={() => setShowResetWarning(false)}
+                  className="bg-red-600 text-white border-2 border-white px-4 py-1 font-bold text-xs hover:bg-red-500"
+                >
+                  [ CANCEL ]
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="flex-1 grid grid-cols-2 gap-10">
           <div className="space-y-4">
@@ -44,7 +76,12 @@ export const BiosSetup: React.FC<BiosSetupProps> = ({ accentColor, updateOSConfi
                 {securitySettings.map((s, i) => (
                   <li 
                     key={i}
-                    onClick={() => setSelectedSetting(i)}
+                    onClick={() => {
+                      setSelectedSetting(i);
+                      if (s.name === 'Factory Hard Reset') {
+                        setShowResetWarning(true);
+                      }
+                    }}
                     className={`px-1 cursor-pointer flex justify-between ${selectedSetting === i ? 'bg-white text-[#000084]' : 'hover:bg-white/10'}`}
                   >
                     <span>{s.name}</span>
